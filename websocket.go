@@ -60,10 +60,10 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 	headers := http.Header{}
 	headers.Add("User-Agent", fmt.Sprintf("%s/%s", Name, Version))
 	c, r, err := Dialer.Dial(cfg.Endpoint, headers)
-	fmt.Println("success", r.Header, r.StatusCode)
+	fmt.Println("success", r)
 	if err != nil {
 
-		fmt.Println("failed", r.Header, r.StatusCode, err)
+		fmt.Println("failed", r, err)
 		return nil, nil, err
 	}
 	c.SetReadLimit(655350)
