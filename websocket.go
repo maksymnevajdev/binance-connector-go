@@ -1,6 +1,7 @@
 package binance_connector
 
 import (
+	"crypto/tls"
 	"fmt"
 	"net/http"
 	"time"
@@ -55,6 +56,7 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 	Dialer := websocket.Dialer{
 		Proxy:             http.ProxyFromEnvironment,
 		HandshakeTimeout:  45 * time.Second,
+		TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 		EnableCompression: false,
 	}
 	headers := http.Header{}
